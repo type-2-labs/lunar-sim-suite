@@ -9,17 +9,20 @@ Every image is built in public by GitHub Actions from a short Dockerfile you can
 
 ## The images
 
-| Tool | Image | What it's for on a rover | Machine | Build |
-|---|---|---|---|---|
-| [Project Chrono](https://projectchrono.org) 10.0.0 | `ghcr.io/type-2-labs/chrono:10.0.0-cuda12.8` | Wheel and rover driving on deformable soil (GPU granular "CRM" soil, SCM soil), vehicle and robot dynamics. Python (`pychrono`) and C++ demos | NVIDIA GPU | [![build](https://github.com/type-2-labs/chrono-docker/actions/workflows/build.yml/badge.svg)](https://github.com/type-2-labs/chrono-docker) |
-| [Chrono DEM-Engine](https://github.com/projectchrono/DEM-Engine) 3.0.19 | `ghcr.io/type-2-labs/deme:3.0.19-cuda12.8` | Soil as individual grains (discrete element method): wheel/grouser traction, sinkage, digging. A second, independent soil method to check Chrono's | NVIDIA GPU | [![build](https://github.com/type-2-labs/deme-docker/actions/workflows/build.yml/badge.svg)](https://github.com/type-2-labs/deme-docker) |
-| [code_aster](https://code-aster.org) 18.1.0 | `simvia/code_aster:18.1.0` (official, by Simvia) | Structural FEM: stress, modes, random vibration and shock for launch loads | CPU | official image |
-| [Elmer FEM](https://www.csc.fi/web/elmer) 9.0 | `ghcr.io/type-2-labs/elmer:9.0` | Thermal with radiation (sun, lunar surface, deep space), heat leaks into electronics, multiphysics | CPU | [![build](https://github.com/type-2-labs/elmer-docker/actions/workflows/build.yml/badge.svg)](https://github.com/type-2-labs/elmer-docker) |
-| [openEMS](https://openems.de) 0.37.0 | `ghcr.io/type-2-labs/openems:0.37.0` | Antennas and radio (FDTD): antenna patterns on the rover body, link to the lander | CPU | [![build](https://github.com/type-2-labs/openems-docker/actions/workflows/build.yml/badge.svg)](https://github.com/type-2-labs/openems-docker) |
-| [NVIDIA Isaac Sim](https://developer.nvidia.com/isaac/sim) 6.2.0.1 | `nvcr.io/nvidia/isaac-sim:6.2.0.1` (official, by NVIDIA) | Photorealistic cameras and sensors, full-robot simulation for autonomy software | NVIDIA **RTX** GPU (needs RT cores; not A100/H100) | official image |
+| Tool | Image | What it's for on a rover | Machine | Rent | Build |
+|---|---|---|---|---|---|
+| [Project Chrono](https://projectchrono.org) 10.0.0 | `ghcr.io/type-2-labs/chrono:10.0.0-cuda12.8` | Wheel and rover driving on deformable soil (GPU granular "CRM" soil, SCM soil), vehicle and robot dynamics. Python (`pychrono`) and C++ demos | NVIDIA GPU | [![Rent on Vast](https://img.shields.io/badge/Rent_on-Vast.ai-2b6cb0)](https://cloud.vast.ai/?ref_id=233118&template_id=c6da5e6b79a7ee7d0cc433f9b02a7fa5) | [![build](https://github.com/type-2-labs/chrono-docker/actions/workflows/build.yml/badge.svg)](https://github.com/type-2-labs/chrono-docker) |
+| [Chrono DEM-Engine](https://github.com/projectchrono/DEM-Engine) 3.0.19 | `ghcr.io/type-2-labs/deme:3.0.19-cuda12.8` | Soil as individual grains (discrete element method): wheel/grouser traction, sinkage, digging. A second, independent soil method to check Chrono's | NVIDIA GPU | [![Rent on Vast](https://img.shields.io/badge/Rent_on-Vast.ai-2b6cb0)](https://cloud.vast.ai/?ref_id=233118&template_id=e9fe878825fb92ced119e171b2259933) | [![build](https://github.com/type-2-labs/deme-docker/actions/workflows/build.yml/badge.svg)](https://github.com/type-2-labs/deme-docker) |
+| [code_aster](https://code-aster.org) 18.1.0 | `ghcr.io/type-2-labs/code_aster:18.1.0` (Simvia's official build, set up for root logins) | Structural FEM: stress, modes, random vibration and shock for launch loads | CPU | [![Rent on Vast](https://img.shields.io/badge/Rent_on-Vast.ai-2b6cb0)](https://cloud.vast.ai/?ref_id=233118&template_id=32f7331906599b1245cd47d7c152ea15) | [![build](https://github.com/type-2-labs/code-aster-docker/actions/workflows/build.yml/badge.svg)](https://github.com/type-2-labs/code-aster-docker) |
+| [Elmer FEM](https://www.csc.fi/web/elmer) 9.0 | `ghcr.io/type-2-labs/elmer:9.0` | Thermal with radiation (sun, lunar surface, deep space), heat leaks into electronics, multiphysics | CPU | [![Rent on Vast](https://img.shields.io/badge/Rent_on-Vast.ai-2b6cb0)](https://cloud.vast.ai/?ref_id=233118&template_id=07a7150c9d4cc8cb6a81f8364f1f32db) | [![build](https://github.com/type-2-labs/elmer-docker/actions/workflows/build.yml/badge.svg)](https://github.com/type-2-labs/elmer-docker) |
+| [openEMS](https://openems.de) 0.37.0 | `ghcr.io/type-2-labs/openems:0.37.0` | Antennas and radio (FDTD): antenna patterns on the rover body, link to the lander | CPU | [![Rent on Vast](https://img.shields.io/badge/Rent_on-Vast.ai-2b6cb0)](https://cloud.vast.ai/?ref_id=233118&template_id=68b39a4e36d4a7cfc83b9e04405f19d2) | [![build](https://github.com/type-2-labs/openems-docker/actions/workflows/build.yml/badge.svg)](https://github.com/type-2-labs/openems-docker) |
+| [NVIDIA Isaac Sim](https://developer.nvidia.com/isaac/sim) 6.2.0.1 | `nvcr.io/nvidia/isaac-sim:6.2.0.1` (official, by NVIDIA) | Photorealistic cameras and sensors, full-robot simulation for autonomy software | NVIDIA **RTX** GPU (needs RT cores; not A100/H100) | not yet | official image |
 
-GPU images need a host NVIDIA driver that supports CUDA 12.8 or newer. They are built for these GPU
-generations: A100 (8.0), RTX 30xx (8.6), RTX 40xx / L40 (8.9), H100 (9.0), RTX 50xx (12.0).
+The **Rent on Vast** buttons open Vast.ai with the image and a matching machine filter already set; pick a machine
+and start it. Each template was test-launched on a rented machine before it was published.
+
+GPU images need an RTX 30-series or newer card and a host NVIDIA driver that supports CUDA 12.8 or newer. They
+are built for these GPU generations: A100 (8.0), RTX 30xx (8.6), RTX 40xx / L40 (8.9), H100 (9.0), RTX 50xx (12.0).
 
 Chrono and DEM-Engine run without a screen: results are written to files (CSV, VTK, images) and viewed
 afterwards, for example in [ParaView](https://www.paraview.org).
@@ -40,7 +43,7 @@ images works the same way (see [Other ways to run](#other-ways-to-run)).
 3. **Find a machine.** For a GPU image, pick one GPU with a new enough driver:
 
    ```bash
-   vastai search offers 'num_gpus=1 cuda_vers>=12.8 reliability>0.98 verified=true disk_space>=40' -o 'dph+'
+   vastai search offers 'num_gpus=1 cuda_vers>=12.8 compute_cap>=800 reliability>0.98 verified=true disk_space>=40' -o 'dph+'
    ```
 
    For a CPU image (code_aster, Elmer, openEMS), rank by cores instead, for example
@@ -93,6 +96,7 @@ The CPU images (Elmer, openEMS, code_aster) also run on a laptop with Docker for
 |---|---|---|
 | chrono | Chrono 10.0.0 built from source: core, Vehicle + vehicle models, FSI with the CRM granular soil (CUDA), postprocess, Python module, C++ demos in `/opt/chrono/demos` | [chrono-docker](https://github.com/type-2-labs/chrono-docker) |
 | deme | `deme[cuda12]==3.0.19` from PyPI in `/opt/venv`, DEM-Engine source and Python demos in `/opt/DEM-Engine` | [deme-docker](https://github.com/type-2-labs/deme-docker) |
+| code_aster | Simvia's `simvia/code_aster:18.1.0`, with code_aster activated for root shells and SSH set up for hosted machines | [code-aster-docker](https://github.com/type-2-labs/code-aster-docker) |
 | elmer | `elmerfem-csc` from CSC's official Ubuntu PPA, gmsh, OpenMPI | [elmer-docker](https://github.com/type-2-labs/elmer-docker) |
 | openems | openEMS v0.37.0 + CSXCAD built with the project's own script, Python interface in `/opt/openEMS/venv`, no GUI | [openems-docker](https://github.com/type-2-labs/openems-docker) |
 
