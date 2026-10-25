@@ -18,7 +18,8 @@ omnilrs snapshot.py lunaryard_20m /workspace/snapshots
 ```
 
 Writes three 1280×720 views of the 20 m lunar yard (with OmniLRS's default rover) to `/workspace/snapshots`, about
-5 minutes including Isaac Sim's start-up. Tested on an RTX 3090, 2026-10-24.
+5 minutes including Isaac Sim's start-up. Tested by launching the Vast template on an RTX 3090, 2026-10-24
+(install 6 minutes, snapshot 3 minutes).
 
 ## Run a scene
 
