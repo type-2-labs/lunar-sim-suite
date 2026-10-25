@@ -14,8 +14,7 @@ Needs an RTX card (RT cores): RTX 3090/4090/5090, RTX A5000/A6000, L40S. Not A10
 ## Check it renders
 
 ```bash
-cd /workspace/omnilrs
-/isaac-sim/python.sh snapshot.py lunaryard_20m /workspace/snapshots
+omnilrs snapshot.py lunaryard_20m /workspace/snapshots
 ```
 
 Writes three 1280×720 views of the 20 m lunar yard (with OmniLRS's default rover) to `/workspace/snapshots`, about
@@ -24,9 +23,11 @@ Writes three 1280×720 views of the 20 m lunar yard (with OmniLRS's default rove
 ## Run a scene
 
 ```bash
-cd /workspace/omnilrs
-/isaac-sim/python.sh run.py environment=lunaryard_20m mode=ROS2 rendering.renderer.headless=True
+omnilrs run.py environment=lunaryard_20m mode=ROS2 rendering.renderer.headless=True
 ```
+
+`omnilrs` runs a script from `/workspace/omnilrs` with Isaac Sim's Python and the ROS 2 settings (also in
+`/workspace/omnilrs/env.sh`).
 
 Other scenes are in `cfg/environment/`. South-pole `largescale` scenes need the elevation maps: boot with
 `OMNILRS_DEMS=1`, or run `./scripts/install_docker.sh` in `/workspace/omnilrs`.

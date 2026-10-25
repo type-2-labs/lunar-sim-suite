@@ -39,11 +39,21 @@ sed -i "s/render_deform_inv: 10/delay: 1.0/" cfg/environment/lunaryard_20m4SDG.y
 if [ "${OMNILRS_DEMS:-0}" = "1" ]; then ./scripts/install_docker.sh; fi
 curl -fsSL "https://raw.githubusercontent.com/type-2-labs/lunar-sim-suite/${SUITE_REF:-main}/omnilrs/snapshot.py" -o snapshot.py || true
 
-cat >> /root/.bashrc <<'RC'
+cat > /workspace/omnilrs/env.sh <<'ENV'
 export ACCEPT_EULA=Y PRIVACY_CONSENT=Y OMNILRS_ROOT=/workspace/omnilrs
 export isaac_sim_package_path=/isaac-sim RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 export ROS_DISTRO=humble LD_LIBRARY_PATH=/isaac-sim/exts/isaacsim.ros2.bridge/humble/lib
-alias isaacpy='/isaac-sim/python.sh'
-RC
+ENV
+# Ubuntu's .bashrc returns early for non-interactive shells, so the source line goes first or scripts miss the ROS 2
+# settings (rclpy not found). The `omnilrs` wrapper sets them itself for any shell.
+sed -i '1i . /workspace/omnilrs/env.sh' /root/.bashrc
+cat > /usr/local/bin/omnilrs <<'W'
+#!/bin/bash
+# omnilrs <script.py> [args]: runs a script from /workspace/omnilrs with Isaac Sim's Python and the ROS 2 settings.
+. /workspace/omnilrs/env.sh
+cd /workspace/omnilrs
+exec /isaac-sim/python.sh "$@"
+W
+chmod +x /usr/local/bin/omnilrs
 touch /workspace/omnilrs/.ready
 echo "setup done $(date -u)"

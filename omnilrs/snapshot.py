@@ -1,7 +1,7 @@
 """Loads an OmniLRS scene headless (ROS 2 mode), steps it, and saves three camera views with Replicator. A quick
 check that the scene renders on a rented machine with no screen.
 
-usage (from /workspace/omnilrs):  /isaac-sim/python.sh snapshot.py lunaryard_20m /workspace/snapshots"""
+usage:  omnilrs snapshot.py lunaryard_20m /workspace/snapshots"""
 import sys
 from pathlib import Path
 
